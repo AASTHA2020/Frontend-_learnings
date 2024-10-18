@@ -1,26 +1,30 @@
-// src/components/TaskList.js
 import React from 'react';
-import { FaEdit, FaTrash } from 'react-icons/fa'; // Icons import kiye
+import { FaEdit, FaTrash } from 'react-icons/fa';  // Import icons for edit and delete buttons
 
-const TaskList = ({ tasks, deleteTask, toggleComplete, editTask }) => {
+// TaskList component to display the list of tasks
+const TaskList = ({ tasks, deleteTask, toggleTask, editTask }) => {
   return (
     <div className="task-list">
       <h2>Your Tasks</h2>
       <ul>
-        {tasks.length === 0 && <p>No tasks available. Add some!</p>} {/* Agar koi task nahi hai to message dikhayenge */}
+        {tasks.length === 0 && <p>No tasks available. Add some!</p>}  
         {tasks.map((task) => (
-          <li key={task.id}>
-            {/* Checkbox jo task ko complete/incomplete mark karega */}
+          <li key={task.id} className="task-item">
             <input
               type="checkbox"
-              checked={task.completed} // Task ka completed status show karta hai
-              onChange={() => toggleComplete(task.id)} // ToggleComplete function call hota hai jab checkbox change hota hai
+              checked={task.completed}  // Show the checkbox as checked if the task is completed
+              onChange={() => toggleTask(task.id)}  // Call toggleTask to toggle the completion status
+              className="task-checkbox"
             />
-            <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
-              {task.title} {/* Task ka naam dikhata hai */}
+            <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>  
+              {task.title}
             </span>
-            <button onClick={() => editTask(task.id)}><FaEdit /></button> {/* Edit button */}
-            <button onClick={() => deleteTask(task.id)}><FaTrash /></button> {/* Delete button */}
+            <button onClick={() => editTask(task.id)} className="edit-button">
+              <FaEdit />  
+            </button>
+            <button onClick={() => deleteTask(task.id)} className="delete-button">
+              <FaTrash />  
+            </button>
           </li>
         ))}
       </ul>
