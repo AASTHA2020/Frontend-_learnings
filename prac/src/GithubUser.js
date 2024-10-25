@@ -13,9 +13,11 @@ const GithubUser = () => {
         setGithubId(e.target.value);
     };
 
-    const handleOnClick = (e) => {
-        setGithubId(e.target.value);
-    }
+    const handleClick =()=>{
+      setLoading(true);
+        getData();
+      setLoading(false);
+    } 
 
     // useEffect(() => {
     //     handleOnClick();
@@ -38,9 +40,9 @@ const GithubUser = () => {
     <>
     <div className='inputContainer'>
         <input onChange ={handleChange} value = {githubId} type="text" placeholder='Search Github User'/>
-        <button onClick={handleOnClick}>Submit</button>
+        <button onClick={handleClick}>Submit</button>
     </div>
-      <div>
+      {userData.name != undefined && <div>
         <div className="imageWrapper">
             <img src={userData.avatar_url}alt="" />
         </div>
@@ -53,6 +55,7 @@ const GithubUser = () => {
         <p>{userData.followers} Followers</p>
         <p>{userData.following} Following</p>
       </div>
+      }
     </>
   )
 }
