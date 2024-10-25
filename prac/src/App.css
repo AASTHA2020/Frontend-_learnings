@@ -1,0 +1,11 @@
+.imageWrapper img{
+  border-radius: 50%;
+}
+a{
+  text-decoration: none;
+  background-color: rgb(40, 109, 238);
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+}
+
